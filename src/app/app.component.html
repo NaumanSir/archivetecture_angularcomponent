@@ -4,10 +4,11 @@
   <p>Year constructed <input type="number" name="yrbuilt" [(ngModel)]="arch.yrbuilt" /></p>
   <p>Location <input type="text" name="location" [(ngModel)]="arch.location" /></p>
   <p>Description <input type="text" name="desc" [(ngModel)]="arch.desc" /></p>
+  <p>Image <input type="file" (change)="imageAdded($event)"></p>
   <input type="submit" value="Archive" />
 </form>
 
-{{ archs | json }}
+{{ Archs | json }}
 
 
 

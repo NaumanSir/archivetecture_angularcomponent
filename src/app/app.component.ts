@@ -8,7 +8,7 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   title = 'Archivetecture';
-  archs = [];
+  Archs = [];
   arch = {};
   private _archService: HttpService;
 
@@ -19,7 +19,7 @@ export class AppComponent {
   ngOnInit() {
     let observable = this._archService.getAll();
     observable.subscribe (data => {
-      this.archs = data['archs']
+      this.Archs = data['Archs']
     });
   }
 
@@ -30,6 +30,21 @@ export class AppComponent {
       this.arch = {};
       this.ngOnInit();
     });
+  }
+
+  imageAdded(e) {
+    console.log("image added", e);
+    let _this = this;
+    let file = e.target.files[0];
+    let reader= new FileReader();
+    reader.addEventListener("load", function() {
+      _this.arch['filename'] = file.name;
+      _this.arch['image'] = reader.result;
+      console.log(_this.arch);
+    }, false);
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }
 
 }
